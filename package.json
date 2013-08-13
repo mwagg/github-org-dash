@@ -16,5 +16,10 @@
     "coffee-script": "1.6.2",
     "consolidate": "0.9.1",
     "jade": "0.30.0"
+  },
+  "devDependencies": {
+    "chai": "~1.7.2",
+    "request": "~2.26.0",
+    "mocha": "~1.12.0"
   }
 }
