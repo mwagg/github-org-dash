@@ -20,13 +20,19 @@ exports.startServer = (config, callback) ->
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.compress()
+    app.use express.cookieParser()
+    app.use express.session(secret: "djskjhdjkshfkjbsevskebeksjvbskecbakb")
     app.use config.server.base, app.router
     app.use express.static(config.watch.compiledDir)
 
   app.configure 'development', ->
     app.use express.errorHandler()
 
-  app.get '/', routes.index(config)
+  app.get '/', routes.dash.index(config)
+  
+  # session
+  app.get '/session/new', routes.session.newSession(config)
+  app.get '/session/auth', routes.session.auth(config)
 
   callback(server)
 
