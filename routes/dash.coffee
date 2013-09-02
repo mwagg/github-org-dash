@@ -1,5 +1,6 @@
-index = (config) ->
+gitHub = require '../lib/github'
 
+index = (config) ->
   options =
     reload:    config.liveReload.enabled
     optimize:  config.isOptimize ? false
@@ -12,10 +13,14 @@ index = (config) ->
   else
     "index"
 
-  (req, res) -> 
+  (req, res) ->
     if !req.session.authToken
       res.redirect('/session/new')
       return
-    res.render name, options
+
+    gitHub.issues(token: req.session.authToken)
+      .then(([response]) ->
+        res.send 200, response.body
+      )
 
 exports.index = index

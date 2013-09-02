@@ -20,7 +20,7 @@ exports.config = {
   that preceeds all Mimosa module names is assumed, however you can use it if you want.  If a
   module is listed here that Mimosa is unaware of, Mimosa will attempt to install it.
   ###
-  modules: ['lint', 'server', 'require', 'minify', 'live-reload', 'testem-require', 'server-reload']
+  modules: ['lint', 'server', 'require', 'minify', 'live-reload', 'testem-require', 'server-reload', 'mocha']
 
   # watch:
     # sourceDir: "assets"                # directory location of web assets, can be relative to
@@ -251,4 +251,6 @@ exports.config = {
                                   # that you would like to have trigger a page refresh,
                                   # like, by default, static views. Is string path,
                                   # can be relative to project root, or absolute
+  serverReload:
+    watch: ["server.coffee", "routes", "lib", "github-conf.json"]
 }

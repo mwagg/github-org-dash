@@ -6,6 +6,7 @@ routes  =        require './routes'
 exports.startServer = (config, callback) ->
 
   port = process.env.PORT or config.server.port
+  console.log "Port is #{port}"
 
   app = express()
   server = app.listen port, ->

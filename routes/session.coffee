@@ -1,4 +1,4 @@
-gitHub = require './github'
+gitHub = require '../lib/github'
 Q = require 'q'
 request = (require 'request')
 post = Q.denodeify(request.post)

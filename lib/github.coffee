@@ -2,6 +2,8 @@ crypto = require 'crypto'
 Q = require 'q'
 randomBytes = Q.denodeify(crypto.randomBytes)
 config = require '../github-conf'
+request = (require 'request')
+get = Q.denodeify(request.get)
 
 exports.clientId = config.clientId
 exports.clientSecret = config.clientSecret
@@ -14,3 +16,10 @@ exports.authorizeUri = ({ secret }) ->
 
 exports.generateAuthSecret = ->
   randomBytes(48).then((buf) -> buf.toString('hex'))
+
+exports.issues = ({ token }) ->
+  get("https://api.github.com/orgs/#{config.organisation}/issues?filter=all",
+    headers:
+      "Accept": "application/json",
+      "Authorization": "token #{token}"
+  )
